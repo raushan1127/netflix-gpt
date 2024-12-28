@@ -2,12 +2,16 @@ import React, { useState } from 'react'
 import Header from './Header';
 import { useRef } from 'react';
 import { checkvaliddata } from '../utils/validate';
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
 
    const [signIn, setsignIn] = useState(true);
    const [errormessage, seterrormessage] = useState(null);
+   const navigate = useNavigate();
 
    const toggleSignIn = () => {
     setsignIn(!signIn);
@@ -20,8 +24,46 @@ const Login = () => {
     
   const message = checkvaliddata(email.current.value, password.current.value);
   seterrormessage(message);
-  //  console.log(email.current.value)
-  //  console.log(password.current.value)
+  if(message) return;
+   
+  if(!signIn) {
+
+    //signup logic
+    
+createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log(user)
+    navigate("/browse")
+   
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    seterrormessage(errorCode +"-" + errorMessage);
+  });
+
+
+  }
+  else {
+//sign In logic
+
+signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    navigate("/browse")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    seterrormessage(errorCode +"-" + errorMessage);
+  });
+
+
+  }
+
 
    }
 
@@ -37,11 +79,11 @@ const Login = () => {
        { !signIn && <input type='text' placeholder='Full Name' className=' bg-blue-100 p-4 my-4 w-full rounded-lg '></input>}
             <input ref={email} type='text' placeholder='Email Address' className=' bg-blue-100 p-4 my-4 w-full rounded-lg '></input>
             <input ref= {password} type='password' placeholder='password' className='bg-blue-100 p-4 my-4 w-full rounded-lg'></input>
-            {seterrormessage && <p className='py-2 my-2 text-red-800 font-bold'>{errormessage}</p>}
+            {errormessage && <p className='py-2 my-2 text-red-800 font-bold'>{errormessage}</p>}
             <button onClick={handleclickbutton} className='bg-red-600 font-bold p-4 my-4 w-full rounded-lg text-white'>{signIn ? "Sign In":"Sign Up"}</button> 
             <div className='flex py-4 '>
-            <p className='mx-2'>{!signIn ? "Already Registered ?" : "New To Netflix ?"}</p>
-            <p className='font-bold cursor-pointer' onClick={toggleSignIn}>{!signIn ? "Sign In" : "Sign Up"}</p>
+            <p className='mx-2 text-white'>{!signIn ? "Already Registered ?" : "New To Netflix ?"}</p>
+            <p className='font-bold cursor-pointer text-white' onClick={toggleSignIn}>{!signIn ? "Sign In" : "Sign Up"}</p>
             </div>                 
         </form>
     </div>
