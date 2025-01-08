@@ -5,7 +5,18 @@ export const API_OPTIONS = {
     headers: {
         accept: "application/json",
         Authorization: 
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZmJjNzIxODM4NWQ3NGUzZTE2YTkyZTI5NjA1NWNhNCIsIm5iZiI6MTczNTI3NzMyNC43MTYsInN1YiI6IjY3NmUzYjBjNGNhMmZiYmZjYTYxNWY5NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PhRdl1793kXD7lk62HTMpFd2mdw_FOLs_84dUi1yJRo"
-        
+        "Bearer " + process.env.REACT_APP_TMDB_KEY        
     },
 }
+
+export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
+
+export const SUPPORTED_LANG = [
+    { identifier: "en", name: "English"},
+    { identifier: "hindi", name: "Hindi"},
+    { identifier: "spanish", name: "Spanish"},
+    { identifier: "gujrati", name: "Gujrati"},
+    { identifier: "maithili", name: "Maithili"},
+]
+
+export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY

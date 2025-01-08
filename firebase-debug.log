@@ -1,0 +1,56 @@
+[debug] [2025-01-08T17:56:12.351Z] ----------------------------------------------------------------------
+[debug] [2025-01-08T17:56:12.354Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\kumar\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-01-08T17:56:12.354Z] CLI Version:   13.29.1
+[debug] [2025-01-08T17:56:12.354Z] Platform:      win32
+[debug] [2025-01-08T17:56:12.354Z] Node Version:  v22.12.0
+[debug] [2025-01-08T17:56:12.355Z] Time:          Wed Jan 08 2025 23:26:12 GMT+0530 (India Standard Time)
+[debug] [2025-01-08T17:56:12.355Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-08T17:56:12.430Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-08T17:56:12.431Z] > authorizing via signed-in user (kumarraushan2615@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\kumar\OneDrive\Desktop\netflix-gpt
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-01-08T17:56:37.832Z] Using project from CLI flag: netflixgpt-eddfb
+[debug] [2025-01-08T17:56:37.833Z] Checked if tokens are valid: false, expires at: 1736342548595
+[debug] [2025-01-08T17:56:37.833Z] Checked if tokens are valid: false, expires at: 1736342548595
+[debug] [2025-01-08T17:56:37.834Z] > refreshing access token with scopes: []
+[debug] [2025-01-08T17:56:37.835Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-01-08T17:56:37.835Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-01-08T17:56:39.080Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-01-08T17:56:39.080Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-01-08T17:56:39.091Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/netflixgpt-eddfb [none]
+[debug] [2025-01-08T17:56:41.000Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/netflixgpt-eddfb 200
+[debug] [2025-01-08T17:56:41.000Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/netflixgpt-eddfb {"projectId":"netflixgpt-eddfb","projectNumber":"873807279748","displayName":"netflixgpt","name":"projects/netflixgpt-eddfb","resources":{"hostingSite":"netflixgpt-eddfb"},"state":"ACTIVE","etag":"1_e0331429-2959-4b0a-8e23-b9f207074b49"}
+[info] i  Using project netflixgpt-eddfb (netflixgpt) 
+[info] 
+=== Hosting Setup
+[debug] [2025-01-08T17:56:41.014Z] Checked if tokens are valid: true, expires at: 1736362598080
+[debug] [2025-01-08T17:56:41.014Z] Checked if tokens are valid: true, expires at: 1736362598080
+[debug] [2025-01-08T17:56:41.015Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/netflixgpt-eddfb [none]
+[debug] [2025-01-08T17:56:41.747Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/netflixgpt-eddfb 200
+[debug] [2025-01-08T17:56:41.747Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/netflixgpt-eddfb {"projectId":"netflixgpt-eddfb","projectNumber":"873807279748","displayName":"netflixgpt","name":"projects/netflixgpt-eddfb","resources":{"hostingSite":"netflixgpt-eddfb"},"state":"ACTIVE","etag":"1_e0331429-2959-4b0a-8e23-b9f207074b49"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

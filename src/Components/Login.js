@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import Header from './Header';
 import { useRef } from 'react';
 import { checkvaliddata } from '../utils/validate';
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
+import { addUser } from '../utils/userSlice';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
 
@@ -12,6 +14,9 @@ const Login = () => {
    const [signIn, setsignIn] = useState(true);
    const [errormessage, seterrormessage] = useState(null);
    const navigate = useNavigate();
+   const dispatch = useDispatch();
+
+ 
 
    const toggleSignIn = () => {
     setsignIn(!signIn);
@@ -19,6 +24,7 @@ const Login = () => {
    
     const email = useRef(null)
     const password = useRef(null)
+    const name = useRef(null)
 
    const handleclickbutton =() => {
     
@@ -30,53 +36,66 @@ const Login = () => {
 
     //signup logic
     
-createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    console.log(user)
-    navigate("/browse")
-   
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    seterrormessage(errorCode +"-" + errorMessage);
-  });
-
-
+    createUserWithEmailAndPassword(
+      auth,
+      email.current.value,
+      password.current.value
+    )
+      .then((userCredential) => {
+        const user = userCredential.user;
+        updateProfile(user, {
+          displayName: name.current.value,
+        })
+          .then(() => {
+            const { uid, email, displayName } = auth.currentUser;
+            dispatch(
+              addUser({
+                uid: uid,
+                email: email,
+                displayName: displayName,
+              })
+            );
+          })
+          .catch((error) => {
+            seterrormessage(error.message);
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        seterrormessage(errorCode + "-" + errorMessage);
+      });
   }
-  else {
+  else {   
 //sign In logic
-
-signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+signInWithEmailAndPassword(
+  auth,
+  email.current.value,
+  password.current.value
+)
   .then((userCredential) => {
-    // Signed in 
+    // Signed in
     const user = userCredential.user;
-    navigate("/browse")
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    seterrormessage(errorCode +"-" + errorMessage);
+    seterrormessage(errorCode + "-" + errorMessage);
   });
-
-
-  }
-
-
-   }
+}
+}
+   
 
   return (
     <div>
         <Header />
         <div className='absolute'>
-            <img src='https://assets.nflxext.com/ffe/siteui/vlv3/150c4b42-11f6-4576-a00f-c631308b1e43/web/IN-en-20241216-TRIFECTA-perspective_915a9055-68ad-4e81-b19a-442f1cd134dc_small.jpg' alt='back_image'>
+            <img className="h-screen object-cover md:w-screen" src='https://assets.nflxext.com/ffe/siteui/vlv3/150c4b42-11f6-4576-a00f-c631308b1e43/web/IN-en-20241216-TRIFECTA-perspective_915a9055-68ad-4e81-b19a-442f1cd134dc_small.jpg' alt='back_image'>
             </img>
         </div>
-        <form onClick={(e) => e.preventDefault()} className='absolute w-3/12 p-12 bg-black my-36 mx-auto right-0 left-0 bg-opacity-80 text-black rounded-lg'>
+        <form onClick={(e) => e.preventDefault()} className='absolute  ml-14 w-3/4 md:w-3/12 p-12 bg-black my-44 md:my-36  md:mx-auto right-0 left-0 bg-opacity-80 text-black rounded-lg'>
         <h1 className='font-bold text-3xl py-4 text-white'>{signIn ? "Sign In":"Sign Up"}</h1>
-       { !signIn && <input type='text' placeholder='Full Name' className=' bg-blue-100 p-4 my-4 w-full rounded-lg '></input>}
+       { !signIn && <input ref={name} type='text' placeholder='Full Name' className=' bg-blue-100 p-4 my-4 w-full rounded-lg '></input>}
             <input ref={email} type='text' placeholder='Email Address' className=' bg-blue-100 p-4 my-4 w-full rounded-lg '></input>
             <input ref= {password} type='password' placeholder='password' className='bg-blue-100 p-4 my-4 w-full rounded-lg'></input>
             {errormessage && <p className='py-2 my-2 text-red-800 font-bold'>{errormessage}</p>}

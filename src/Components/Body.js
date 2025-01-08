@@ -3,6 +3,7 @@ import Login from './Login';
 import { createBrowserRouter, useNavigate } from 'react-router-dom';
 import { RouterProvider } from 'react-router-dom';
 import Browse from './Browse';
+import Gptsearch from './Gptsearch';
 
 
 
@@ -23,6 +24,11 @@ const Body = () => {
             element: <Browse/>,
             
         },
+        {
+          path: "/gptsearch",
+          element: <Gptsearch />,
+          
+      },
     ]);
    
   return (
