@@ -75,8 +75,8 @@ const gptResults = await openai.chat.completions.create({
 
   return ( 
 <div className='relative pt-[60%]  md:w-full md:pt-[20%]   md:flex md:grid-row-12 justify-center  md:justify-center '> 
-        <form className=' mx-8 w-3/4 md:py-0 px-1 md:px-0  md:w-1/2 bg-black md:grid md:grid-cols-12   rounded-lg   md:ml-72 ' onSubmit={(e) => e.preventDefault()}>
-            <input type='text' className='p-2 -m-1 md:p-4 md:m-4 col-span-9 rounded-lg ' placeholder= {lang[Langid].gptSearchplaceholder}></input>
+        <form className=' mx-6 w-4/4 md:py-0 flex  md:px-0  md:w-1/2 bg-black md:grid md:grid-cols-12   rounded-lg   md:ml-72 ' onSubmit={(e) => e.preventDefault()}>
+            <input type='text' className='p-2  m-4 md:p-4 md:m-4 col-span-9 rounded-lg ' placeholder= {lang[Langid].gptSearchplaceholder}></input>
             <button ref={searchText} className='col-span-3 m-4 py-2 px-4 bg-red-700 text-white rounded-lg ' onClick={handleGptSearchClick}>
                 {lang[Langid].search}
             </button>

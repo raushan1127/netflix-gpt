@@ -65,13 +65,13 @@ return () => unsubscribe()
   return (
     <div className=' w-screen  absolute p-4  bg-gradient-to-b from-black  z-10 flex flex-col md:flex-row justify-between'>
         <img className='w-44 mx-auto md:mx-0' src={LOGO}></img>
-       {user&& (<div className=''>
-    <buttton className='py-3 mx-4 px-4 rounded-lg hover: bg-blue-900 text-white cursor-pointer ' onClick={handleGptSearchClick} >
+       {user&& (<div className='flex '>
+    <buttton className='md:py-3 md:mx-4 my-5 mx-5 px-4 py-3 md:my-5 md:px-4 rounded-lg hover: bg-blue-900 text-white cursor-pointer ' onClick={handleGptSearchClick} >
         {showGptSearch ? "Homepage" : "Gpt search"}
         </buttton>
         
         
-          <button  onClick={handlesignout} className=' ml-32 md:ml-0 size-fit md:size-fit-0 md:ml-0  p-3 bg-red-700 m-4 content-center text-white font-bold rounded-lg hover:bg-red-800 shadow-lg'>
+          <button  onClick={handlesignout} className='  md:ml-0 py-3 px-3 size-fit md:size-fit-0 md:p-3 bg-red-700 m-4 content-center text-white font-bold rounded-lg hover:bg-red-800 shadow-lg'>
             sign out 
             </button>
         </div>)}
